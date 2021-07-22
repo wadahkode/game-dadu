@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="papan">
+      <div class="flex">
+        <button class="btn-start">Mulai</button>
+        <button class="btn-stop hidden">Berhenti</button>
+        <div>Skor: <span id="papan-skor">0</span></div>
+      </div>
+
+      <div class="papan-dadu"></div>
+      <form class="form hidden" method="POST">
+        <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
+        <input type="number" id="tebakNilaiDadu" required />
+        <button type="submit" id="btnSubmit">Kirim</button>
+      </form>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
