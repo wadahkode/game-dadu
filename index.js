@@ -121,7 +121,7 @@ btnStop.addEventListener("click", function () {
 function handleSubmit(e) {
   e.preventDefault();
   const { tebakNilaiDadu } = e.target;
-  let skor =
+  skor =
     localStorage.getItem("skor") === null ? 0 : localStorage.getItem("skor");
 
   if (localStorage.getItem("nilai_dadu") === tebakNilaiDadu.value) {
