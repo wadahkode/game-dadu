@@ -137,5 +137,11 @@ form.btnSubmit.addEventListener("click", function (e) {
   form.onsubmit = handleSubmit;
 });
 
-papanSkor.innerHTML =
-  localStorage.getItem("skor") < 1 ? 0 : localStorage.getItem("skor");
+if (
+  localStorage.getItem("skor") === "" ||
+  localStorage.getItem("skor") === null
+) {
+  papanSkor.innerHTML = 0;
+} else {
+  papanSkor.innerHTML = localStorage.getItem("skor");
+}
