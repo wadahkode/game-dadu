@@ -3,6 +3,7 @@ const btnStart = document.querySelector(".btn-start");
 const btnStop = document.querySelector(".btn-stop");
 const form = document.querySelector(".form");
 const papanSkor = document.getElementById("papan-skor");
+const audio = document.createElement("audio");
 let skor = 0;
 
 papanDadu.innerHTML = "Dadu belum dikocok.";
@@ -90,6 +91,10 @@ function onStart() {
     form.classList.add("hidden");
   }
 
+  audio.src = "./sound.mp3";
+  audio.autoplay = true;
+  audio.loop = true;
+
   let dadu = setInterval(function () {
     let value = KocokDadu();
     i++;
@@ -98,12 +103,11 @@ function onStart() {
       btnStop.click();
       btnStart.disabled = true;
       localStorage.setItem("nilai_dadu", value);
+      audio.loop = false;
 
       clearInterval(dadu);
     }
   }, 20);
-
-  return () => clearInterval(dadu);
 }
 
 btnStart.addEventListener("click", onStart);
