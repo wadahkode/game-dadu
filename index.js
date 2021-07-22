@@ -8,11 +8,10 @@ let skor = 0;
 papanDadu.innerHTML = "Dadu belum dikocok.";
 
 function KocokDadu() {
-  let dadu = Math.floor(Math.random() * 6);
+  let dadu = Math.floor(Math.random() * 6) + 1;
 
   switch (dadu) {
     case 1:
-      console.log(1);
       papanDadu.innerHTML = `
       <div class="dadu">
       <span></span>
@@ -21,7 +20,6 @@ function KocokDadu() {
       break;
 
     case 2:
-      console.log(2);
       papanDadu.innerHTML = `
       <div class="dadu">
       <span></span>
@@ -31,7 +29,6 @@ function KocokDadu() {
       break;
 
     case 3:
-      console.log(3);
       papanDadu.innerHTML = `
       <div class="dadu">
       <span></span>
@@ -42,7 +39,6 @@ function KocokDadu() {
       break;
 
     case 4:
-      console.log(4);
       papanDadu.innerHTML = `
       <div class="dadu">
       <span></span>
@@ -54,7 +50,6 @@ function KocokDadu() {
       break;
 
     case 5:
-      console.log(5);
       papanDadu.innerHTML = `
       <div class="dadu">
       <span></span>
@@ -67,7 +62,6 @@ function KocokDadu() {
       break;
 
     case 6:
-      console.log(6);
       papanDadu.innerHTML = `
         <div class="dadu">
           <span></span>
@@ -122,11 +116,13 @@ function handleSubmit(e) {
   e.preventDefault();
   const { tebakNilaiDadu } = e.target;
   skor =
-    localStorage.getItem("skor") === null ? 0 : localStorage.getItem("skor");
+    localStorage.getItem("skor") === null
+      ? 0
+      : parseInt(localStorage.getItem("skor"));
 
   if (localStorage.getItem("nilai_dadu") === tebakNilaiDadu.value) {
     alert("Jawaban anda benar nilai dadu adalah " + tebakNilaiDadu.value);
-    localStorage.setItem("skor", parseInt(skor) + 1);
+    localStorage.setItem("skor", skor + 1);
     window.location.reload();
   } else {
     alert("Jawaban anda salah!");
@@ -138,11 +134,5 @@ form.btnSubmit.addEventListener("click", function (e) {
   form.onsubmit = handleSubmit;
 });
 
-if (
-  localStorage.getItem("skor") === "" ||
-  localStorage.getItem("skor") === null
-) {
-  papanSkor.innerHTML = 0;
-} else {
-  papanSkor.innerHTML = localStorage.getItem("skor");
-}
+papanSkor.innerHTML =
+  localStorage.getItem("skor") === null ? 0 : localStorage.getItem("skor");
