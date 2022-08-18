@@ -1,28 +1,68 @@
 body {
-  background-image: url(https://images.unsplash.com/photo-1553481187-be93c21490a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80);
+  /* background-image: url(https://images.unsplash.com/photo-1553481187-be93c21490a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80);
   background-position: top center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   margin: 0;
   padding: 0;
 }
 
+@media screen and (max-width: 320px) {
+  .papan {
+    padding: 1rem;
+  }
+  .papan > header {
+    position: relative;
+    max-width: 90%;
+    margin-bottom: -1rem;
+  }
+  .papan > header .btn-start {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
 .papan {
-  background-color: black;
-  width: 500px;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 1rem;
-  opacity: 0.9;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.papan > header {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 640px;
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 4rem;
+}
+
+.papan > header > .left {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.papan > header > .left div {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .papan-dadu {
+  width: auto;
+  height: auto;
   display: flex;
-  border: 1px solid #ccc;
   margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
 }
 
 .dadu {
@@ -30,11 +70,9 @@ body {
   gap: 3px;
 }
 
-.dadu > span {
-  background-color: red;
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
+.dadu > img {
+  width: 120px;
+  height: 120px;
 }
 
 .hidden {
@@ -52,5 +90,14 @@ body {
 }
 
 .btn-start {
+  background-color: rgb(12, 156, 96);
+  border: none;
   padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-start:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }

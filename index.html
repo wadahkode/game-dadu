@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game dadu</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="papan">
-      <div class="flex">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game dadu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="papan">
+    <header class="flex">
+      <div class="left">
         <button class="btn-start">Mulai</button>
-        <button class="btn-stop hidden">Berhenti</button>
-        <div>Skor: <span id="papan-skor">0</span></div>
+        <div>
+          <button type="button" id="btn-credit-min">-</button>
+          <div id="credit"></div>
+          <button type="button" id="btn-credit-plus">+</button>
+        </div>
       </div>
+      <button class="btn-stop hidden">Berhenti</button>
+      <div>Credit: <span id="papan-credit">Rp. 200.000</span></div>
+    </header>
 
-      <div class="papan-dadu"></div>
-      <form class="form hidden" method="POST">
-        <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
-        <input type="number" id="tebakNilaiDadu" required />
-        <button type="submit" id="btnSubmit">Kirim</button>
-      </form>
-    </div>
+    <div class="papan-dadu"></div>
+    <form class="form hidden" method="POST">
+      <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
+      <input type="number" id="tebakNilaiDadu" min="1" max="6" required />
+      <button type="submit" id="btnSubmit">Kirim</button>
+    </form>
+  </div>
 
-    <script src="index.js"></script>
-  </body>
+  <script src="index.js"></script>
+</body>
+
 </html>
