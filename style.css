@@ -7,7 +7,7 @@ body {
   padding: 0;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 320px) and (max-width: 360px) {
   .papan {
     padding: 1rem;
   }
@@ -24,38 +24,51 @@ body {
   }
 }
 
+.navigator-bottom {
+  position: fixed;
+  bottom: 0rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.navigator-bottom .btn-start {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  border-radius: 100%;
+  cursor: pointer;
+  font-size: 16pt;
+}
+
+.navigator-bottom .btn-start:hover,
+.navigator-bottom .btn-start:active,
+.navigator-bottom .btn-start:focus {
+  outline: none;
+}
+
+.navigator-bottom .left .bet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.navigator-bottom .left .bet div {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .papan {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem 0;
-}
-
-.papan > header {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 640px;
-  position: fixed;
-  left: 1rem;
-  right: 1rem;
-  bottom: 4rem;
-}
-
-.papan > header > .left {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.papan > header > .left div {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .papan-dadu {
@@ -79,8 +92,22 @@ body {
   display: none;
 }
 
-.form {
+.form.flex {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
+}
+
+.form .form-control {
+  padding: 0.5rem;
+}
+
+.form .btn-submit {
+  background-color: rgba(1, 40, 167, 0.945);
+  border: none;
+  color: white;
+  padding: 0.6rem;
+  cursor: pointer;
 }
 
 .flex {

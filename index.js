@@ -123,7 +123,7 @@ function onStart() {
       btnStart.disabled = true;
       localStorage.setItem("nilai_dadu", value);
       audio.loop = false;
-      container.style.height = "600px";
+      container.style.height = "500px";
 
       clearInterval(dadu);
     }
@@ -134,6 +134,7 @@ btnStart.addEventListener("click", onStart);
 btnStop.addEventListener("click", function () {
   papanDadu.classList.add("hidden");
   form.classList.remove("hidden");
+  form.classList.add("flex");
 });
 
 function handleSubmit(e) {

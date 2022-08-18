@@ -11,25 +11,30 @@
 
 <body>
   <div class="papan">
-    <header class="flex">
+    <div class="papan-dadu"></div>
+    <form class="form hidden" method="POST">
+      <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
+      <div>
+        <input type="number" id="tebakNilaiDadu" class="form-control" min="1" max="6" required />
+        <button type="submit" id="btnSubmit" class="btn-submit">Kirim</button>
+      </div>
+    </form>
+
+    <header class="flex navigator-bottom">
       <div class="left">
         <button class="btn-start">Mulai</button>
-        <div>
-          <button type="button" id="btn-credit-min">-</button>
-          <div id="credit"></div>
-          <button type="button" id="btn-credit-plus">+</button>
+        <div class="bet">
+          <label>Jumlah taruhan :</label>
+          <div>
+            <button type="button" id="btn-credit-min">-</button>
+            <div id="credit"></div>
+            <button type="button" id="btn-credit-plus">+</button>
+          </div>
         </div>
       </div>
       <button class="btn-stop hidden">Berhenti</button>
       <div>Credit: <span id="papan-credit">Rp. 200.000</span></div>
     </header>
-
-    <div class="papan-dadu"></div>
-    <form class="form hidden" method="POST">
-      <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
-      <input type="number" id="tebakNilaiDadu" min="1" max="6" required />
-      <button type="submit" id="btnSubmit">Kirim</button>
-    </form>
   </div>
 
   <script src="index.js"></script>
