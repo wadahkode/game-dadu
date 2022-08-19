@@ -54,17 +54,14 @@ btnCreditMin.onclick = (e) => {
 btnCreditPlus.onclick = (e) => {
   bet += 250;
 
-  if (bet === betMax) {
-    localStorage.setItem("credit_bet", betMax)
-
-    creditBet.innerHTML = toRupiah(betMax, "Rp. ");
-  } else {
-    if (bet < betMax) {
-      localStorage.setItem("credit_bet", bet)
-      creditBet.innerHTML = toRupiah(bet, "Rp. ");
-    }
-
+  if (bet > betMax) {
     return false
+  } else if (bet < betMax) {
+    localStorage.setItem("credit_bet", bet)
+    creditBet.innerHTML = toRupiah(bet, "Rp. ");
+  } else if (bet === betMax) {
+    localStorage.setItem("credit_bet", betMax)
+    creditBet.innerHTML = toRupiah(betMax, "Rp. ");
   }
 };
 
