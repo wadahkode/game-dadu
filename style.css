@@ -3,6 +3,9 @@ body {
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat; */
+  background-color: rgba(68, 3, 3, 0.89);
+  color: white;
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -163,4 +166,9 @@ body {
   padding: 0 10px;
   font-size: 16pt;
   cursor: pointer;
+  color: white;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
 }

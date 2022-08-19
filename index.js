@@ -11,7 +11,7 @@ const btnCreditPlus = document.getElementById("btn-credit-plus");
 const btnReload = document.querySelector(".btn-reload");
 const btnDadu = document.querySelectorAll(".btn-dadu");
 let credit = !localStorage.getItem("credit")
-  ? 200000
+  ? 20000
   : localStorage.getItem("credit");
 let bet = !localStorage.getItem("credit_bet")
   ? 250
@@ -34,7 +34,7 @@ papanDadu.innerHTML = `
     <div>
       <img src="assets/images/dadu-4.png" width="80" alt=""/>
       <img src="assets/images/dadu-5.png" width="80" alt=""/>
-      <img src="assets/images/dadu-6.png" width="80" alt=""/>
+      <img src="assets/images/dadu-6.png" class="rotate-90" width="80" alt=""/>
     </div>
   </div>
 `;
@@ -108,7 +108,7 @@ function KocokDadu() {
     case 6:
       papanDadu.innerHTML = `
         <div class="dadu">
-          <img src="assets/images/dadu-6.png" alt=""/>
+          <img src="assets/images/dadu-6.png" class="rotate-90" alt=""/>
         </div>
       `;
       break;
@@ -120,6 +120,16 @@ function KocokDadu() {
 function onStart() {
   let timeout = 200;
   let i = 1;
+
+  btnStart.disabled = true;
+
+  if (credit < 250) {
+    alert("Kredit tidak cukup, Silahkan ulangi permainan.");
+    window.location.reload();
+  } else if (credit < bet) {
+    alert("Kredit tidak cukup, Silahkan turunkan taruhan anda.");
+    window.location.reload();
+  }
 
   if (papanDadu.classList.contains("hidden")) {
     papanDadu.classList.remove("hidden");
