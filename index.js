@@ -18,7 +18,7 @@ let bet =
   localStorage.getItem("credit_bet") === null
     ? 250
     : parseInt(localStorage.getItem("credit_bet"));
-let betMax = bet * 20;
+let betMax = 5000;
 
 btnReload.onclick = () => {
   localStorage.removeItem("credit");
@@ -43,23 +43,23 @@ papanDadu.innerHTML = `
 
 creditBet.innerHTML = toRupiah(parseInt(bet), "Rp. ");
 
-btnCreditMin.onclick = () => {
+btnCreditMin.onclick = (e) => {
   bet = parseInt(bet);
 
-  if (bet === 250) return false;
-  bet -= 250;
+  if (bet <= 250) return false;
+  else bet -= 250;
 
   localStorage.setItem("credit_bet", bet);
   creditBet.innerHTML = toRupiah(bet, "Rp. ");
 };
 
-btnCreditPlus.onclick = () => {
+btnCreditPlus.onclick = (e) => {
   bet = parseInt(bet);
   bet += 250;
 
-  if (bet > betMax) return false;
+  if (bet >= betMax) return false;
+  else localStorage.setItem("credit_bet", bet);
 
-  localStorage.setItem("credit_bet", bet);
   creditBet.innerHTML = toRupiah(bet, "Rp. ");
 };
 
@@ -120,17 +120,19 @@ function KocokDadu() {
 }
 
 function onStart() {
-  let timeout = 200;
+  let timeout = 240;
   let i = 1;
 
   btnStart.disabled = true;
 
   if (credit < 250) {
     alert("Kredit tidak cukup, Silahkan ulangi permainan.");
-    window.location.reload();
+
+    return reloadPapanDadu();
   } else if (credit < bet) {
     alert("Kredit tidak cukup, Silahkan turunkan taruhan anda.");
-    window.location.reload();
+
+    return reloadPapanDadu();
   }
 
   if (papanDadu.classList.contains("hidden")) {
@@ -141,23 +143,25 @@ function onStart() {
     form.classList.add("hidden");
   }
 
-  audio.src = "./sound.mp3";
+  audio.src = "./assets/audio/sound.mp3";
   audio.autoplay = true;
   audio.loop = true;
 
   let dadu = setInterval(function () {
     let value = KocokDadu();
-    i++;
 
     if (i >= timeout) {
+      audio.loop = false;
+
       btnStop.click();
       btnStart.disabled = true;
       localStorage.setItem("nilai_dadu", value);
-      audio.loop = false;
       container.style.height = "500px";
 
       clearInterval(dadu);
     }
+
+    i++;
   }, 20);
 }
 
@@ -198,20 +202,35 @@ function toRupiah(angka, prefix) {
 }
 
 function tebakNilaiDadu(event) {
+  const audioLose = document.createElement("audio");
+  const audioWin = document.createElement("audio");
   let x = parseInt(event.currentTarget.dataset.target);
   let y = parseInt(localStorage.getItem("nilai_dadu"));
   let win = 0;
   let lose = 0;
 
   if (y === x) {
-    alert("Jawaban anda benar nilai dadu adalah " + x);
-    win = x <= 3 ? x * bet + 2500 + credit : x * bet + 5000 + credit;
+    audioWin.src = "./assets/audio/win.wav";
+    audioWin.autoplay = true;
+    // alert("Jawaban anda benar nilai dadu adalah " + x);
+    if (audioWin.readyState) {
+      audioWin.autoplay = false;
+      papanDadu.appendChild(audioWin);
+    }
 
+    win = x <= 3 ? x * bet + 2500 + credit : x * bet + 5000 + credit;
     localStorage.setItem("credit", win);
 
     return reloadPapanDadu();
   } else {
-    alert("Jawaban anda salah!");
+    audioLose.src = "./assets/audio/lose.wav";
+    audioLose.autoplay = true;
+
+    // alert("Jawaban anda salah!");
+    if (audioLose.readyState) {
+      audioLose.autoplay = false;
+      papanDadu.appendChild(audioLose);
+    }
 
     lose = credit - bet;
     localStorage.setItem("credit", lose);

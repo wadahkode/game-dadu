@@ -5,16 +5,27 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Game dadu</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="author" content="wadahkode">
+  <meta name="description" content="game kropyokan">
+  <title>Game Kropyokan - Dadu</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
   <div class="papan">
+
+    <nav class="navigator-top">
+      <div class="brand">
+        <h1>Kropyokan</h1>
+      </div>
+      <div>
+        <button class="btn-reload">Ulangi permainan</button>
+      </div>
+    </nav>
+
     <header class="flex navigator-bottom">
       <div class="left">
         <button class="btn-start">Mulai</button>
-        <button class="btn-reload">Ulangi permainan</button>
         <div class="bet">
           <label>Jumlah taruhan :</label>
           <div>
@@ -25,10 +36,11 @@
         </div>
       </div>
       <button class="btn-stop hidden">Berhenti</button>
-      <div>Credit: <span id="papan-credit">Rp. 200.000</span></div>
+      <div>Kredit: <span id="papan-credit">Rp. 200.000</span></div>
     </header>
 
     <div class="papan-dadu"></div>
+
     <form class="form hidden" method="POST">
       <div>
         <button type="button" class="btn-dadu" data-target="1">
