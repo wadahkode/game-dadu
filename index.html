@@ -30,10 +30,32 @@
 
     <div class="papan-dadu"></div>
     <form class="form hidden" method="POST">
-      <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
       <div>
-        <input type="number" id="tebakNilaiDadu" class="form-control" min="1" max="6" required />
-        <button type="submit" id="btnSubmit" class="btn-submit">Kirim</button>
+        <button type="button" class="btn-dadu" data-target="1">
+          <img src="assets/images/dadu-1.png" width="128" alt="" />
+        </button>
+        <button type="button" class="btn-dadu" data-target="2">
+          <img src="assets/images/dadu-2.png" width="128" alt="" />
+        </button>
+        <button type="button" class="btn-dadu" data-target="3">
+          <img src="assets/images/dadu-3.png" width="128" alt="" />
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn-dadu" data-target="4">
+          <img src="assets/images/dadu-4.png" width="128" alt="" />
+        </button>
+        <button type="button" class="btn-dadu" data-target="5">
+          <img src="assets/images/dadu-5.png" width="128" alt="" />
+        </button>
+        <button type="button" class="btn-dadu" data-target="6">
+          <img src="assets/images/dadu-6.png" width="128" alt="" />
+        </button>
+      </div>
+      <div>
+        <label for="tebakNilaiDadu" class="hidden">Tebak nilai dadu</label>
+        <input type="number" id="tebakNilaiDadu" class="form-control hidden" min="1" max="6" required />
+        <button type="submit" id="btnSubmit" class="btn-submit hidden">Kirim</button>
       </div>
     </form>
   </div>

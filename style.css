@@ -92,6 +92,38 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  gap: 1rem;
+}
+
+.form.flex img {
+  cursor: pointer;
+}
+
+.form.flex button {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+}
+
+.form.flex button:active,
+.form.flex button:focus {
+  border: 1px solid rgb(0, 148, 91);
+}
+
+.dadu-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dadu-preview div {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.form.flex div {
+  display: inline-flex;
+  gap: 1rem;
 }
 
 .form .form-control {

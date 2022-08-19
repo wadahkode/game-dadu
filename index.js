@@ -9,6 +9,7 @@ const audio = document.createElement("audio");
 const btnCreditMin = document.getElementById("btn-credit-min");
 const btnCreditPlus = document.getElementById("btn-credit-plus");
 const btnReload = document.querySelector(".btn-reload");
+const btnDadu = document.querySelectorAll(".btn-dadu");
 let credit = !localStorage.getItem("credit")
   ? 200000
   : localStorage.getItem("credit");
@@ -23,7 +24,21 @@ btnReload.onclick = () => {
   window.location.reload();
 };
 
-papanDadu.innerHTML = "Dadu belum dikocok.";
+papanDadu.innerHTML = `
+  <div class="dadu-preview">
+    <div>
+      <img src="assets/images/dadu-1.png" width="80" alt=""/>
+      <img src="assets/images/dadu-2.png" width="80" alt=""/>
+      <img src="assets/images/dadu-3.png" width="80" alt=""/>
+    </div>
+    <div>
+      <img src="assets/images/dadu-4.png" width="80" alt=""/>
+      <img src="assets/images/dadu-5.png" width="80" alt=""/>
+      <img src="assets/images/dadu-6.png" width="80" alt=""/>
+    </div>
+  </div>
+`;
+
 creditBet.innerHTML = toRupiah(parseInt(bet), "Rp. ");
 
 btnCreditMin.onclick = () => {
@@ -169,6 +184,31 @@ function toRupiah(angka, prefix) {
   var number_string = new Intl.NumberFormat().format(angka);
   return `${prefix}${number_string}`;
 }
+
+function tebakNilaiDadu(event) {
+  let nilaiDadu = event.currentTarget.dataset.target;
+  let win = 0;
+
+  if (nilaiDadu <= 3) {
+    win = nilaiDadu * bet + 2000;
+  } else if (nilaiDadu >= 6) {
+    win = nilaiDadu * bet + 5000;
+  }
+
+  if (localStorage.getItem("nilai_dadu") === nilaiDadu) {
+    alert("Jawaban anda benar nilai dadu adalah " + nilaiDadu);
+    localStorage.setItem("credit", parseInt(credit) + win);
+    window.location.reload();
+  } else {
+    alert("Jawaban anda salah!");
+    localStorage.setItem("credit", parseInt(credit) - bet);
+    window.location.reload();
+  }
+}
+
+btnDadu.forEach((btn) => {
+  btn.onclick = tebakNilaiDadu;
+});
 
 form.btnSubmit.addEventListener("click", function (e) {
   form.onsubmit = handleSubmit;
