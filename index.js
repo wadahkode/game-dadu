@@ -53,10 +53,13 @@ btnCreditMin.onclick = (e) => {
 
 btnCreditPlus.onclick = (e) => {
   bet += 250;
+  betMax = localStorage.getItem("credit_bet") === null
+    ? betMax
+    : parseInt(localStorage.getItem("credit_bet"));
+  betMax = betMax >= 5000 ? 5000 : betMax
 
   if (bet >= betMax) {
-    e.currentTarget.disabled = true
-    return false
+    return false;
   }
   
   localStorage.setItem("credit_bet", bet)
