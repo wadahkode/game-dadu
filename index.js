@@ -54,9 +54,9 @@ btnCreditMin.onclick = (e) => {
 btnCreditPlus.onclick = (e) => {
   bet += 250;
 
-  localStorage.setItem("credit_bet", bet === betMax ? bet : betMax)
+  localStorage.setItem("credit_bet", bet <= betMax ? bet : betMax)
 
-  creditBet.innerHTML = toRupiah(bet === betMax ? bet : betMax, "Rp. ");
+  creditBet.innerHTML = toRupiah(bet <= betMax ? bet : betMax, "Rp. ");
 };
 
 function KocokDadu() {
