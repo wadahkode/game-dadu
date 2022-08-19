@@ -196,16 +196,16 @@ function toRupiah(angka, prefix) {
 }
 
 function tebakNilaiDadu(event) {
-  let nilaiDadu = event.currentTarget.dataset.target;
+  let nilaiDadu = parseInt(event.currentTarget.dataset.target);
   let win = 0;
 
   if (nilaiDadu <= 3) {
-    win = nilaiDadu * bet + 2000;
+    win = parseInt(nilaiDadu * bet) + 2500;
   } else if (nilaiDadu >= 6) {
-    win = nilaiDadu * bet + 5000;
+    win = parseInt(nilaiDadu * bet) + 5000;
   }
 
-  if (localStorage.getItem("nilai_dadu") === nilaiDadu) {
+  if (parseInt(localStorage.getItem("nilai_dadu")) === nilaiDadu) {
     alert("Jawaban anda benar nilai dadu adalah " + nilaiDadu);
     localStorage.setItem("credit", parseInt(credit) + win);
     window.location.reload();
