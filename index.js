@@ -8,6 +8,7 @@ const creditBet = document.getElementById("credit");
 const audio = document.createElement("audio");
 const btnCreditMin = document.getElementById("btn-credit-min");
 const btnCreditPlus = document.getElementById("btn-credit-plus");
+const btnReload = document.querySelector(".btn-reload");
 let credit = !localStorage.getItem("credit")
   ? 200000
   : localStorage.getItem("credit");
@@ -16,8 +17,11 @@ let bet = !localStorage.getItem("credit_bet")
   : localStorage.getItem("credit_bet");
 let betMax = bet * 20;
 
-// localStorage.removeItem("credit");
-// localStorage.removeItem("credit_bet");
+btnReload.onclick = () => {
+  localStorage.removeItem("credit");
+  localStorage.removeItem("credit_bet");
+  window.location.reload();
+};
 
 papanDadu.innerHTML = "Dadu belum dikocok.";
 creditBet.innerHTML = toRupiah(parseInt(bet), "Rp. ");

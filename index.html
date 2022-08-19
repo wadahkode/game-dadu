@@ -11,6 +11,23 @@
 
 <body>
   <div class="papan">
+    <header class="flex navigator-bottom">
+      <div class="left">
+        <button class="btn-start">Mulai</button>
+        <button class="btn-reload">Ulangi permainan</button>
+        <div class="bet">
+          <label>Jumlah taruhan :</label>
+          <div>
+            <button type="button" id="btn-credit-min" class="btn-credit">-</button>
+            <div id="credit"></div>
+            <button type="button" id="btn-credit-plus" class="btn-credit">+</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn-stop hidden">Berhenti</button>
+      <div>Credit: <span id="papan-credit">Rp. 200.000</span></div>
+    </header>
+
     <div class="papan-dadu"></div>
     <form class="form hidden" method="POST">
       <label for="tebakNilaiDadu">Tebak nilai dadu</label><br />
@@ -19,22 +36,6 @@
         <button type="submit" id="btnSubmit" class="btn-submit">Kirim</button>
       </div>
     </form>
-
-    <header class="flex navigator-bottom">
-      <div class="left">
-        <button class="btn-start">Mulai</button>
-        <div class="bet">
-          <label>Jumlah taruhan :</label>
-          <div>
-            <button type="button" id="btn-credit-min">-</button>
-            <div id="credit"></div>
-            <button type="button" id="btn-credit-plus">+</button>
-          </div>
-        </div>
-      </div>
-      <button class="btn-stop hidden">Berhenti</button>
-      <div>Credit: <span id="papan-credit">Rp. 200.000</span></div>
-    </header>
   </div>
 
   <script src="index.js"></script>
