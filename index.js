@@ -54,11 +54,10 @@ btnCreditMin.onclick = (e) => {
 btnCreditPlus.onclick = (e) => {
   bet += 250;
 
-  if (bet > betMax) {
-    localStorage.setItem("credit_bet", betMax)
-    creditBet.innerHTML = toRupiah(betMax, "Rp. ");
+  if (bet >= betMax) {
+    return false
   } else {
-    localStorage.setItem("credit_bet", bet)
+    localStorage.setItem("credit_bet", bet-betMax)
     creditBet.innerHTML = toRupiah(bet, "Rp. ");
   }
 };
