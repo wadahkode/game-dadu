@@ -44,9 +44,7 @@ papanDadu.innerHTML = `
 creditBet.innerHTML = toRupiah(parseInt(bet), "Rp. ");
 
 btnCreditMin.onclick = (e) => {
-  bet = parseInt(bet);
-
-  if (bet <= 250) return false;
+  if (bet === 250) return false;
   else bet -= 250;
 
   localStorage.setItem("credit_bet", bet);
@@ -54,10 +52,9 @@ btnCreditMin.onclick = (e) => {
 };
 
 btnCreditPlus.onclick = (e) => {
-  bet = parseInt(bet);
   bet += 250;
 
-  if (bet >= betMax) return false;
+  if (bet === betMax) return false;
   else localStorage.setItem("credit_bet", bet);
 
   creditBet.innerHTML = toRupiah(bet, "Rp. ");
