@@ -10,12 +10,14 @@ const btnCreditMin = document.getElementById("btn-credit-min");
 const btnCreditPlus = document.getElementById("btn-credit-plus");
 const btnReload = document.querySelector(".btn-reload");
 const btnDadu = document.querySelectorAll(".btn-dadu");
-let credit = !localStorage.getItem("credit")
-  ? 20000
-  : parseInt(localStorage.getItem("credit"));
-let bet = !localStorage.getItem("credit_bet")
-  ? 250
-  : parseInt(localStorage.getItem("credit_bet"));
+let credit =
+  localStorage.getItem("credit") === null
+    ? 20000
+    : parseInt(localStorage.getItem("credit"));
+let bet =
+  localStorage.getItem("credit_bet") === null
+    ? 250
+    : parseInt(localStorage.getItem("credit_bet"));
 let betMax = bet * 20;
 
 btnReload.onclick = () => {
@@ -199,22 +201,44 @@ function tebakNilaiDadu(event) {
   let x = parseInt(event.currentTarget.dataset.target);
   let y = parseInt(localStorage.getItem("nilai_dadu"));
   let win = 0;
-
-  if (x <= 3) {
-    win = parseInt(x * bet) + 2500;
-  } else if (x >= 6) {
-    win = parseInt(x * bet) + 5000;
-  }
+  let lose = 0;
 
   if (y === x) {
     alert("Jawaban anda benar nilai dadu adalah " + x);
-    localStorage.setItem("credit", credit + win);
-    window.location.reload();
+    win = x <= 3 ? x * bet + 2500 + credit : x * bet + 5000 + credit;
+
+    localStorage.setItem("credit", win);
+
+    return reloadPapanDadu();
   } else {
     alert("Jawaban anda salah!");
-    localStorage.setItem("credit", credit - bet);
-    window.location.reload();
+
+    lose = credit - bet;
+    localStorage.setItem("credit", lose);
+
+    return reloadPapanDadu();
   }
+}
+
+function reloadPapanDadu() {
+  form.classList.add("hidden");
+  form.classList.remove("flex");
+  btnStart.disabled = false;
+  papanDadu.classList.remove("hidden");
+  papanDadu.innerHTML = `
+      <div class="dadu-preview">
+        <div>
+          <img src="assets/images/dadu-1.png" width="80" alt=""/>
+          <img src="assets/images/dadu-2.png" width="80" alt=""/>
+          <img src="assets/images/dadu-3.png" width="80" alt=""/>
+        </div>
+        <div>
+          <img src="assets/images/dadu-4.png" width="80" alt=""/>
+          <img src="assets/images/dadu-5.png" width="80" alt=""/>
+          <img src="assets/images/dadu-6.png" class="rotate-90" width="80" alt=""/>
+        </div>
+      </div>
+    `;
 }
 
 btnDadu.forEach((btn) => {
@@ -225,4 +249,11 @@ form.btnSubmit.addEventListener("click", function (e) {
   form.onsubmit = handleSubmit;
 });
 
-papanCredit.innerHTML = toRupiah(parseInt(credit), "Rp. ");
+setInterval(() => {
+  credit =
+    localStorage.getItem("credit") === null
+      ? 20000
+      : parseInt(localStorage.getItem("credit"));
+
+  papanCredit.innerHTML = toRupiah(credit, "Rp. ");
+}, 20);
