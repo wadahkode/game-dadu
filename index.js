@@ -55,11 +55,12 @@ btnCreditPlus.onclick = (e) => {
   bet += 250;
 
   if (bet >= betMax) {
+    e.currentTarget.disabled = true
     return false
-  } else {
-    localStorage.setItem("credit_bet", bet)
-    creditBet.innerHTML = toRupiah(bet, "Rp. ");
   }
+  
+  localStorage.setItem("credit_bet", bet)
+  creditBet.innerHTML = toRupiah(bet, "Rp. ");
 };
 
 function KocokDadu() {
