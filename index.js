@@ -12,10 +12,10 @@ const btnReload = document.querySelector(".btn-reload");
 const btnDadu = document.querySelectorAll(".btn-dadu");
 let credit = !localStorage.getItem("credit")
   ? 20000
-  : localStorage.getItem("credit");
+  : parseInt(localStorage.getItem("credit"));
 let bet = !localStorage.getItem("credit_bet")
   ? 250
-  : localStorage.getItem("credit_bet");
+  : parseInt(localStorage.getItem("credit_bet"));
 let betMax = bet * 20;
 
 btnReload.onclick = () => {
@@ -196,22 +196,23 @@ function toRupiah(angka, prefix) {
 }
 
 function tebakNilaiDadu(event) {
-  let nilaiDadu = parseInt(event.currentTarget.dataset.target);
+  let x = parseInt(event.currentTarget.dataset.target);
+  let y = parseInt(localStorage.getItem("nilai_dadu"));
   let win = 0;
 
-  if (nilaiDadu <= 3) {
-    win = parseInt(nilaiDadu * bet) + 2500;
-  } else if (nilaiDadu >= 6) {
-    win = parseInt(nilaiDadu * bet) + 5000;
+  if (x <= 3) {
+    win = parseInt(x * bet) + 2500;
+  } else if (x >= 6) {
+    win = parseInt(x * bet) + 5000;
   }
 
-  if (parseInt(localStorage.getItem("nilai_dadu")) === nilaiDadu) {
-    alert("Jawaban anda benar nilai dadu adalah " + nilaiDadu);
-    localStorage.setItem("credit", parseInt(credit) + win);
+  if (y === x) {
+    alert("Jawaban anda benar nilai dadu adalah " + x);
+    localStorage.setItem("credit", credit + win);
     window.location.reload();
   } else {
     alert("Jawaban anda salah!");
-    localStorage.setItem("credit", parseInt(credit) - bet);
+    localStorage.setItem("credit", credit - bet);
     window.location.reload();
   }
 }
